@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PadreController!
+{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper {
+            margin: 1em auto;
+            max-width: 800px;
+            width: 95%;
+            font: 18px / 1.5 sans-serif;
+        }
+        .example-wrapper code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+        }
+    </style>
+
+    <div class="example-wrapper">
+        <h1>Hello
+            {{ controller_name }}! ✅</h1>
+<pre>
+    {{ dump(campos) }}
+</pre>
+        {{ form_start(form) }}
+        {{ form_row(form.nombre) }}
+
+        <h3>hijos</h3>
+        <ul class="tags">
+
+        {% set i = 0 %}
+        
+            {% for hijo in form.hijos %}
+
+                {% if campos[i].getTipo() == 'F' %}
+                    <li>{{ form_row(hijo.valorfecha) }}</li>
+                {% else %}
+                  <li>{{ form_row(hijo.valor) }}</li>
+                {% endif %}
+                {% set i = i + 1 %}
+            {% endfor %}
+        </ul>
+        {{ form_row(form.aceptar) }}
+        {{ form_row(form.cancelar) }}
+
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
